@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "name": "solid-sync-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Robbe Van Herck",
+  "license": "MIT",
+  "dependencies": {
+    "@inrupt/solid-client-authn-core": "^1.11.7",
+    "rdflib": "^2.2.19"
+  }
+}
