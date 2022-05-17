@@ -17,7 +17,7 @@ mu.app.post('/update', (_req, res) => {
 async function update() {
   const podBase = process.env.POD_BASE || "http://localhost:3000";
 
-  const podName = process.env.POD_NAME || "robbevanherck";
+  const podName = process.env.POD_NAME || "my-pod";
 
   let podPath = podBase;
 

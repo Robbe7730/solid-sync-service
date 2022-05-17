@@ -51,8 +51,8 @@ async function getContainer(containerUri) {
 }
 
 export async function getPod(podUri) {
-  let visited = [];
-  let toVisit = [podUri];
+  const visited = [];
+  const toVisit = [podUri];
   const store = rdflib.graph();
 
   while (toVisit.length !== 0) {
@@ -61,7 +61,7 @@ export async function getPod(podUri) {
     try {
       const currentGraph = await getContainer(uri);
 
-      currentGraph.match(rdflib.sym(podUri), LDP('contains'), null).forEach((quad) => {
+      currentGraph.match(rdflib.sym(uri), LDP('contains'), null).forEach((quad) => {
         if (!visited.includes(quad.object.value) && !toVisit.includes(quad.object.value)) {
           toVisit.push(quad.object.value);
         }
