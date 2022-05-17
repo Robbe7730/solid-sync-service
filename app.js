@@ -1,6 +1,8 @@
 import mu from 'mu';
 
 import { getPod } from './solid.js';
+import { writeToStore } from './sparql.js';
+
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -26,7 +28,7 @@ async function update() {
   }
 
   const podStore = await getPod(podPath);
-  console.log(podStore);
+  await writeToStore(podStore);
 }
 
 function checkEnv() {
