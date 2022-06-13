@@ -26,6 +26,8 @@ function sparqlify(node) {
 export async function writeToStore(graph) {
   // I know this is not very efficient, but rdflib.js does not provide a better way
   let query = "INSERT DATA {\n";
+
+  // Store in respective graph
   query = query + graph.match().map((quad) => {
     return (
       "GRAPH " + sparqlify(quad.graph) + "{ " +
@@ -34,6 +36,17 @@ export async function writeToStore(graph) {
         sparqlify(quad.object) + " . }"
     );
   }).join("\n");
+
+  // Store in public graph
+  query = query + graph.match().map((quad) => {
+    return (
+      "GRAPH <http://mu.semte.ch/graphs/public> { " +
+        sparqlify(quad.subject) + " " +
+        sparqlify(quad.predicate) + " " +
+        sparqlify(quad.object) + " . }"
+    );
+  }).join("\n");
+
   query = query + "}";
 
   await updateSudo(query);
